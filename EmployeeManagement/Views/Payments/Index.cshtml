@@ -1,0 +1,61 @@
+﻿@model IEnumerable<EmployeeManagement.Models.Payment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<p>
+    <a asp-action="Create" class=" btn btn-primary"><i class="fa fa-plus"></i>Add Payment</a>
+</p>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Payment Record</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PaymentDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Employee)
+                    </th>
+                    <th>Edit</th>
+                    <th>View</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaymentDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employee.Id)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" class=" btn btn-primary" asp-route-id="@item.PaymentId"><i class="fa fa-edit"></i></a> |
+
+                        </td>
+                        <td>
+
+                            <a asp-action="Details" class=" btn btn-success" asp-route-id="@item.PaymentId"><i class="fa fa-eye"></i></a> |
+
+                        </td>
+                        <td>
+
+                            <a asp-action="Delete" class=" btn btn-danger" asp-route-id="@item.PaymentId"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>

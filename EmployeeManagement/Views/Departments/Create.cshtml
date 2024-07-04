@@ -1,0 +1,63 @@
+﻿@model EmployeeManagement.Models.Department
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Add Department Record</h4>
+<hr />
+<div class="container">
+    <div class="row justify-content-center text-center">
+        <div class="col-md-4">
+            <!-- Button to trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDepartmentModal">
+                Add Department
+            </button>
+            <a href="@Url.Action("Index","Departments")" class="btn btn-secondary">Back to List</a>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="addDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="addDepartmentModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addDepartmentModalLabel">Add Department Record</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="DepartmentName" class="control-label"></label>
+                                <input asp-for="DepartmentName" class="form-control" />
+                                <span asp-validation-for="DepartmentName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="EmployeeId" class="control-label"></label>
+                                <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+                            </div>
+                            <br />
+                            <div class="col-12 d-flex justify-content-between">
+                                <div class="form-group">
+                                    <input type="submit" value="Add" class="btn btn-primary" />
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}
